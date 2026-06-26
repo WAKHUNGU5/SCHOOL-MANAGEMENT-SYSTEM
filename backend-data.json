@@ -1,0 +1,139 @@
+{
+  "teachers": [
+    {
+      "id": 1,
+      "name": "System Administrator Admin",
+      "email": "admin@school.edu",
+      "password": "adminpass"
+    },
+    {
+      "id": 2,
+      "name": "mwalimu wakhungu",
+      "email": "teacher@chengwali.edu",
+      "password": "macdo777"
+    }
+  ],
+  "students": {
+    "1": [
+      {
+        "id": 1,
+        "name": "Austin Kiprop",
+        "marks": {
+          "Math": 78,
+          "English": 82,
+          "Kiswahili": 65,
+          "Science": 80,
+          "SocialStudies": 72,
+          "PreTechnical": 85,
+          "CRE": 90
+        }
+      },
+      {
+        "id": 2,
+        "name": "Brenda Cherotich",
+        "marks": {
+          "Math": 64,
+          "English": 71,
+          "Kiswahili": 80,
+          "Science": 68,
+          "SocialStudies": 75,
+          "PreTechnical": 70,
+          "CRE": 82
+        }
+      },
+      {
+        "id": 3,
+        "name": "jksjsjs",
+        "marks": {
+          "Math": 0,
+          "English": 0,
+          "Kiswahili": 0,
+          "Science": 0,
+          "SocialStudies": 0,
+          "PreTechnical": 0,
+          "CRE": 0
+        }
+      },
+      {
+        "id": 4,
+        "name": "jsuddhyd",
+        "marks": {
+          "Math": 0,
+          "English": 0,
+          "Kiswahili": 0,
+          "Science": 0,
+          "SocialStudies": 0,
+          "PreTechnical": 0,
+          "CRE": 0
+        }
+      },
+      {
+        "id": 5,
+        "name": "sisusyus",
+        "marks": {
+          "Math": 0,
+          "English": 0,
+          "Kiswahili": 0,
+          "Science": 0,
+          "SocialStudies": 0,
+          "PreTechnical": 0,
+          "CRE": 0
+        }
+      },
+      {
+        "id": 6,
+        "name": "ishshs",
+        "marks": {
+          "Math": 0,
+          "English": 0,
+          "Kiswahili": 0,
+          "Science": 0,
+          "SocialStudies": 0,
+          "PreTechnical": 0,
+          "CRE": 0
+        }
+      },
+      {
+        "id": 7,
+        "name": "kjjsushs",
+        "marks": {
+          "Math": 0,
+          "English": 0,
+          "Kiswahili": 0,
+          "Science": 0,
+          "SocialStudies": 0,
+          "PreTechnical": 0,
+          "CRE": 0
+        }
+      },
+      {
+        "id": 8,
+        "name": "khjsgs",
+        "marks": {
+          "Math": 0,
+          "English": 0,
+          "Kiswahili": 0,
+          "Science": 0,
+          "SocialStudies": 0,
+          "PreTechnical": 0,
+          "CRE": 0
+        }
+      }
+    ],
+    "7": [
+      {
+        "id": 3,
+        "name": "Emmanuel Barasa",
+        "marks": {
+          "Math": 85,
+          "English": 74,
+          "Kiswahili": 90,
+          "Science": 88,
+          "SocialStudies": 68,
+          "PreTechnical": 79,
+          "CRE": 84
+        }
+      }
+    ]
+  }
+}

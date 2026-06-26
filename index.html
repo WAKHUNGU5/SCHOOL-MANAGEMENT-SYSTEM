@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheng'wali SA Comprehensive School - CBE Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        @media print {
+            body * { visibility: hidden; }
+            #printArea, #printArea *, #printSubjectArea, #printSubjectArea * { visibility: visible; }
+            #printArea { position: absolute; left: 0; top: 0; width: 100%; }
+            #printSubjectArea { position: absolute; left: 0; top: 0; width: 100%; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-800">
+
+    <div id="authScreen" class="flex min-h-screen items-center justify-center p-4">
+        <div class="w-full max-w-md bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
+            <div class="text-center mb-8">
+                <h1 class="text-xl font-black text-blue-900 uppercase">CHENG'WALI SA</h1>
+                <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Comprehensive School CBE Portal</p>
+            </div>
+
+            <div id="loginView">
+                <h2 class="text-lg font-bold text-gray-900">Teacher Sign In</h2>
+                <form onsubmit="handleLogin(event)" class="mt-4 space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600">Email Address</label>
+                        <input id="loginEmail" type="email" required placeholder="teacher@chengwalisa.edu" class="mt-1 block w-full rounded-xl border border-gray-300 p-3 text-sm focus:border-blue-600 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600">Password</label>
+                        <input id="loginPassword" type="password" required placeholder="••••••••" class="mt-1 block w-full rounded-xl border border-gray-300 p-3 text-sm focus:border-blue-600 focus:outline-none">
+                    </div>
+                    <button type="submit" class="w-full rounded-xl bg-blue-600 py-3 text-sm font-bold text-white hover:bg-blue-700 transition">Sign In</button>
+                </form>
+                <p class="mt-6 text-center text-xs text-gray-500">New teacher? <button onclick="toggleAuthViews(false)" class="text-blue-600 font-bold hover:underline">Create an account</button></p>
+            </div>
+
+            <div id="signupView" class="hidden">
+                <h2 class="text-lg font-bold text-gray-900">Create Teacher Account</h2>
+                <form onsubmit="handleSignup(event)" class="mt-4 space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600">Full Name</label>
+                        <input id="signupName" type="text" required placeholder="e.g., Mwalimu James" class="mt-1 block w-full rounded-xl border border-gray-300 p-3 text-sm focus:border-blue-600 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600">Email Address</label>
+                        <input id="signupEmail" type="email" required placeholder="teacher@chengwalisa.edu" class="mt-1 block w-full rounded-xl border border-gray-300 p-3 text-sm focus:border-blue-600 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600">Password</label>
+                        <input id="signupPassword" type="password" required minlength="6" placeholder="Min 6 characters" class="mt-1 block w-full rounded-xl border border-gray-300 p-3 text-sm focus:border-blue-600 focus:outline-none">
+                    </div>
+                    <button type="submit" class="w-full rounded-xl bg-green-600 py-3 text-sm font-bold text-white hover:bg-green-700 transition">Register Account</button>
+                </form>
+                <p class="mt-6 text-center text-xs text-gray-500">Already registered? <button onclick="toggleAuthViews(true)" class="text-blue-600 font-bold hover:underline">Sign in instead</button></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="portalDashboard" class="hidden min-h-screen flex flex-col">
+        <header class="bg-blue-900 text-white px-6 py-4 flex items-center justify-between shadow-md">
+            <div>
+                <h1 class="text-lg font-black tracking-tight uppercase">CHENG'WALI SA COMPREHENSIVE SCHOOL</h1>
+                <p class="text-xs text-blue-200">Educator Active Workspace &bull; <span id="navTeacherName" class="font-bold text-white">Teacher</span></p>
+            </div>
+            <button onclick="handleLogout()" class="text-xs font-bold bg-blue-950 border border-blue-800 hover:bg-red-600 px-4 py-2 rounded-xl transition">Sign Out</button>
+        </header>
+
+        <main id="gradeSelectorView" class="flex-1 max-w-5xl mx-auto w-full p-6 space-y-6">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900">Grade Dashboard Selection</h2>
+                <p class="text-sm text-gray-500 mt-1">Select your class grade button below to begin entering student marks.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <script>
+                    for (let g = 1; g <= 9; g++) {
+                        document.write(`
+                            <button onclick="openGradeWorkspace(${g})" class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm text-left hover:border-blue-600 hover:shadow transition flex items-center justify-between group">
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">Grade ${g} Portal</h3>
+                                    <p class="text-xs text-gray-400 mt-0.5">Manage learners & exams</p>
+                                </div>
+                                <span class="text-xl text-gray-300 group-hover:text-blue-600 transition-colors">&rarr;</span>
+                            </button>
+                        `);
+                    }
+                </script>
+            </div>
+        </main>
+
+        <main id="gradeWorkspaceView" class="hidden flex-1 max-w-[96%] mx-auto w-full p-6 space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                <div class="flex items-center gap-3">
+                    <button onclick="backToDashboard()" class="px-4 py-2 border rounded-xl bg-gray-50 hover:bg-gray-100 text-gray-700 font-bold transition text-xs">
+                        &larr; Back to Dashboard
+                    </button>
+                    <h2 class="text-lg font-extrabold text-gray-900" id="workspaceTitle">Grade Evaluation</h2>
+                </div>
+                
+                <div class="flex gap-4 items-center">
+                    <div class="bg-gray-50 border border-gray-200 px-3 py-1.5 rounded-xl text-center min-w-[90px]">
+                        <span class="block text-[10px] uppercase font-bold text-gray-400">Total Learners</span>
+                        <span class="text-lg font-black text-gray-800" id="totalStudentsDisplay">0</span>
+                    </div>
+                    <div class="bg-blue-50 border border-blue-100 px-4 py-1.5 rounded-xl text-center min-w-[120px]">
+                        <span class="block text-[10px] uppercase font-bold text-blue-500">Class Mean Score</span>
+                        <span class="text-lg font-black text-blue-900" id="classMeanDisplay">00.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <section class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                <div class="flex items-center justify-between border-b pb-3 mb-4">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500 flex items-center gap-2">
+                        <span class="h-2 w-2 rounded-full bg-green-500"></span>
+                        Subject Live Performance Means
+                    </h3>
+                    <button onclick="openSubjectPrintPreview()" class="bg-blue-50 border border-blue-200 text-blue-700 hover:bg-blue-600 hover:text-white px-3 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1 shadow-sm">
+                        Print Subject Analytics
+                    </button>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3" id="subjectMeansTray">
+                    </div>
+            </section>
+
+            <div class="grid grid-cols-1 xl:grid-cols-4 gap-6 items-start">
+                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm space-y-3">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400">Enroll New Learner</h3>
+                    <form onsubmit="handleAddStudent(event)" class="space-y-3">
+                        <input id="newStudentName" type="text" required placeholder="Learner full name..." class="block w-full rounded-lg border border-gray-300 p-2 text-sm focus:border-blue-600 focus:outline-none">
+                        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-bold text-xs hover:bg-blue-700 transition">Add Student to Register</button>
+                    </form>
+                </div>
+
+                <div class="xl:col-span-3 bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                    <div class="p-4 border-b border-gray-100 bg-gray-50 flex items-center justify-between">
+                        <h3 class="font-bold text-gray-900 text-sm">CBE Subject Score Sheet</h3>
+                        <span class="text-[11px] text-gray-400 font-medium">Input values directly out of 100%</span>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                            <thead>
+                                <tr class="bg-gray-50 text-gray-500 uppercase text-[10px] font-bold border-b border-gray-200 whitespace-nowrap">
+                                    <th class="p-3 sticky left-0 bg-gray-50 z-10">Learner Name</th>
+                                    <th class="p-3 text-center">Math</th>
+                                    <th class="p-3 text-center">English</th>
+                                    <th class="p-3 text-center">Kiswahili</th>
+                                    <th class="p-3 text-center">Science</th>
+                                    <th class="p-3 text-center">Social St.</th>
+                                    <th class="p-3 text-center">Pre-Tech</th>
+                                    <th class="p-3 text-center">CRE</th>
+                                    <th class="p-3 text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentTableBody" class="divide-y divide-gray-100">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="reportCardModal" class="hidden fixed inset-0 bg-gray-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xl rounded-2xl p-6 shadow-xl flex flex-col max-h-[90vh]">
+            <div class="flex items-center justify-between border-b pb-3 mb-4">
+                <h3 class="font-bold text-gray-900 text-sm">Individual Learner Report Preview</h3>
+                <div class="flex gap-2">
+                    <button onclick="triggerPrint()" class="bg-green-600 text-white text-xs px-3 py-1.5 rounded-lg font-bold hover:bg-green-700 transition">Print Report</button>
+                    <button onclick="closeModal('reportCardModal')" class="bg-gray-100 text-gray-700 text-xs px-3 py-1.5 rounded-lg hover:bg-gray-200 transition">Close</button>
+                </div>
+            </div>
+
+            <div id="printArea" class="flex-1 overflow-y-auto p-6 border rounded-xl bg-white text-black space-y-4">
+                <div class="text-center border-b pb-3">
+                    <h1 class="text-xl font-black text-gray-900 uppercase">CHENG'WALI SA COMPREHENSIVE SCHOOL</h1>
+                    <p class="text-xs tracking-wider uppercase font-bold text-gray-500 mt-1">CBE End-Term Assessment Report</p>
+                    <p class="text-[11px] text-gray-400 font-medium">Academic Year Period Session: 2026</p>
+                </div>
+
+                <div class="grid grid-cols-2 text-xs border bg-gray-50 p-2.5 rounded-lg">
+                    <div><strong>Learner:</strong> <span id="reportStudentName">--</span></div>
+                    <div class="text-right"><strong>Class Level:</strong> <span id="reportStudentGrade">--</span></div>
+                </div>
+
+                <table class="w-full text-left border-collapse border text-xs mt-2">
+                    <thead>
+                        <tr class="bg-gray-50 border text-gray-600 text-[10px] font-bold uppercase">
+                            <th class="p-2 border">Learning Area</th>
+                            <th class="p-2 border text-center">Score (%)</th>
+                            <th class="p-2 border text-center">CBE Level Performance Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportCardTableBody">
+                    </tbody>
+                </table>
+
+                <div class="pt-3 border-t flex justify-between items-center text-xs font-bold">
+                    <span>Average Mean Grade Performance:</span>
+                    <span class="text-sm font-black text-blue-700"><span id="reportStudentAverage">--</span>%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="subjectPrintModal" class="hidden fixed inset-0 bg-gray-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xl rounded-2xl p-6 shadow-xl flex flex-col max-h-[90vh]">
+            <div class="flex items-center justify-between border-b pb-3 mb-4">
+                <h3 class="font-bold text-gray-900 text-sm">Subject Performance Analytics Print Document</h3>
+                <div class="flex gap-2">
+                    <button onclick="triggerPrint()" class="bg-blue-600 text-white text-xs px-3 py-1.5 rounded-lg font-bold hover:bg-blue-700 transition">Print Analytics</button>
+                    <button onclick="closeModal('subjectPrintModal')" class="bg-gray-100 text-gray-700 text-xs px-3 py-1.5 rounded-lg hover:bg-gray-200 transition">Close</button>
+                </div>
+            </div>
+
+            <div id="printSubjectArea" class="flex-1 overflow-y-auto p-6 border rounded-xl bg-white text-black space-y-4">
+                <div class="text-center border-b pb-3">
+                    <h1 class="text-xl font-black text-gray-900 uppercase">CHENG'WALI SA COMPREHENSIVE SCHOOL</h1>
+                    <p class="text-xs tracking-wider uppercase font-bold text-gray-500 mt-1">CBE Subject Mean-Score Breakdown Ledger</p>
+                    <p class="text-[11px] text-gray-400 font-medium">Academic Evaluation Cycle Session: 2026</p>
+                </div>
+
+                <div class="grid grid-cols-2 text-xs border bg-gray-50 p-2.5 rounded-lg">
+                    <div><strong>Target Class Level:</strong> <span id="printSubGradeTitle">--</span></div>
+                    <div class="text-right"><strong>Class Overall Mean:</strong> <span id="printSubOverallMean" class="font-bold text-blue-700">--</span></div>
+                </div>
+
+                <table class="w-full text-left border-collapse border text-xs mt-2">
+                    <thead>
+                        <tr class="bg-gray-50 border text-gray-600 text-[10px] font-bold uppercase">
+                            <th class="p-3 border">Registered CBE Subject Line Area</th>
+                            <th class="p-3 border text-center">Class Subject Performance Mean Score (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="printSubjectTableBody" class="divide-y">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="app.js"></script>
+</body>
+</html>

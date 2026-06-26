@@ -1,0 +1,12 @@
+{
+  "name": "school-management-system",
+  "version": "1.0.0",
+  "description": "Backend server for the school management frontend dashboard.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.4"
+  }
+}
